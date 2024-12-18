@@ -114,22 +114,31 @@ public static Color[][] read(String fileName) {
 		return flippedImage;
 	}
 	
-	// Computes the luminance of the RGB values of the given pixel, using the formula 
-	// lum = 0.299 * r + 0.587 * g + 0.114 * b, and returns a Color object consisting
-	// the three values r = lum, g = lum, b = lum.
 	private static Color luminance(Color pixel) {
-		//// Replace the following statement with your code
-		return null;
+		int r = pixel.getRed();
+		int g = pixel.getGreen();
+		int b = pixel.getBlue();
+		int lum = (int) (0.299 * r + 0.587 * g + 0.114 * b);
+		return new Color(lum, lum, lum);
 	}
 	
 	/**
-	 * Returns an image which is the grayscaled version of the given image.
-	 */
-	public static Color[][] grayScaled(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
-	}	
-	
+ * Returns an image which is the grayscaled version of the given image.
+ */
+public static Color[][] grayScaled(Color[][] image) {
+    int rows = image.length;
+    int cols = image[0].length;
+    Color[][] grayImage = new Color[rows][cols];
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            grayImage[i][j] = luminance(image[i][j]);
+        }
+    }
+
+    return grayImage;
+}
+
 	/**
 	 * Returns an image which is the scaled version of the given image. 
 	 * The image is scaled (resized) to have the given width and height.
