@@ -121,8 +121,10 @@ public class Runigram {
 		int g = pixel.getGreen();
 		int b = pixel.getBlue();
 		int lum = (int) (0.299 * r + 0.587 * g + 0.114 * b);
+		lum = Math.max(0, Math.min(255, lum));
 		return new Color(lum, lum, lum);
 	}
+	
 
 	/**
 	 * Returns an image which is the grayscaled version of the given image.
