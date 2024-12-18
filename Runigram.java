@@ -68,17 +68,43 @@ public static Color[][] read(String fileName) {
 	// For example, to check that some image processing function works correctly,
 	// we can apply the function and then use this function to print the resulting image.
 	private static void print(Color[][] image) {
-		//// Replace this comment with your code
-		//// Notice that all you have to so is print every element (i,j) of the array using the print(Color) function.
+		// Loop through each row
+		for (int i = 0; i < image.length; i++) {
+			// Loop through each column in the row
+			for (int j = 0; j < image[i].length; j++) {
+				// Print the current color using the print(Color) function
+				print(image[i][j]);
+				System.out.print(" "); // Add a space between colors in the row
+			}
+			// Move to the next line after printing all colors in the row
+			System.out.println();
+		}
 	}
+	
 	
 	/**
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
-		//// Replace the following statement with your code
-		return null;
+		// Get the dimensions of the input image
+		int rows = image.length;
+		int cols = image[0].length;
+	
+		// Create a new 2D array for the flipped image
+		Color[][] flippedImage = new Color[rows][cols];
+	
+		// Iterate through each row of the input image
+		for (int i = 0; i < rows; i++) {
+			// Reverse the pixels in the current row
+			for (int j = 0; j < cols; j++) {
+				flippedImage[i][j] = image[i][cols - 1 - j];
+			}
+		}
+	
+		// Return the horizontally flipped image
+		return flippedImage;
 	}
+	
 	
 	/**
 	 * Returns an image which is the vertically flipped version of the given image. 
