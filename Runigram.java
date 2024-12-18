@@ -86,14 +86,14 @@ public static Color[][] read(String fileName) {
 	 * Returns an image which is the horizontally flipped version of the given image. 
 	 */
 	public static Color[][] flippedHorizontally(Color[][] image) {
-		// Get the dimensions of the input image
+		
 		int rows = image.length;
 		int cols = image[0].length;
 	
-		// Create a new 2D array for the flipped image
+		
 		Color[][] flippedImage = new Color[rows][cols];
 	
-		// Iterate through each row of the input image
+	
 		for (int i = 0; i < rows; i++) {
 			// Reverse the pixels in the current row
 			for (int j = 0; j < cols; j++) {
@@ -101,17 +101,17 @@ public static Color[][] read(String fileName) {
 			}
 		}
 	
-		// Return the horizontally flipped image
 		return flippedImage;
 	}
 	
-	
-	/**
-	 * Returns an image which is the vertically flipped version of the given image. 
-	 */
-	public static Color[][] flippedVertically(Color[][] image){
-		//// Replace the following statement with your code
-		return null;
+	public static Color[][] flippedVertically(Color[][] image) {
+		int rows = image.length;
+		int cols = image[0].length;
+		Color[][] flippedImage = new Color[rows][cols];
+		for (int i = 0; i < rows; i++) {
+			flippedImage[i] = image[rows - 1 - i];
+		}
+		return flippedImage;
 	}
 	
 	// Computes the luminance of the RGB values of the given pixel, using the formula 
