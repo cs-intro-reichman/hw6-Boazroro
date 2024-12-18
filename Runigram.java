@@ -54,7 +54,7 @@ public static Color[][] read(String fileName) {
 
 
     // Prints the RGB values of a given color.
-	private static void print(Color c) {
+	public static void print(Color c) {
 	    System.out.print("(");
 		System.out.printf("%3s,", c.getRed());   // Prints the red component
 		System.out.printf("%3s,", c.getGreen()); // Prints the green component
@@ -67,7 +67,7 @@ public static Color[][] read(String fileName) {
 	// This function is used for debugging purposes.
 	// For example, to check that some image processing function works correctly,
 	// we can apply the function and then use this function to print the resulting image.
-	private static void print(Color[][] image) {
+	public static void print(Color[][] image) {
 		// Loop through each row
 		for (int i = 0; i < image.length; i++) {
 			// Loop through each column in the row
@@ -140,13 +140,32 @@ public static Color[][] grayScaled(Color[][] image) {
 }
 
 	/**
-	 * Returns an image which is the scaled version of the given image. 
-	 * The image is scaled (resized) to have the given width and height.
-	 */
-	public static Color[][] scaled(Color[][] image, int width, int height) {
-		//// Replace the following statement with your code
-		return null;
-	}
+ * Returns a new image which is a scaled version of the original image.
+ * @param image - the original image (2D array of Color objects)
+ * @param width - the desired width of the new image
+ * @param height - the desired height of the new image
+ * @return a scaled version of the image
+ */
+public static Color[][] scaled(Color[][] image, int width, int height) {
+    int originalWidth = image[0].length;
+    int originalHeight = image.length;
+
+    Color[][] scaledImage = new Color[height][width];
+
+    double scaleWidth = (double) originalWidth / width;
+    double scaleHeight = (double) originalHeight / height;
+
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            int originalRow = (int) (i * scaleHeight);
+            int originalCol = (int) (j * scaleWidth);
+            scaledImage[i][j] = image[originalRow][originalCol];
+        }
+    }
+
+    return scaledImage;
+}
+
 	
 	/**
 	 * Computes and returns a blended color which is a linear combination of the two given

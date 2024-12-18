@@ -1,16 +1,40 @@
 import java.awt.Color;
 
-/**
- * Demonstrates the scaling (resizing) operation featured by Runigram.java. 
- * The program recieves three command-line arguments: a string representing the name
- * of the PPM file of a source image, and two integers that specify the width and the
- * height of the scaled, output image. For example, to scale/resize ironman.ppm to a width
- * of 100 pixels and a height of 900 pixels, use: java Editor2 ironman.ppm 100 900
- */
+import java.awt.Color;
+
 public class Editor2 {
 
-	public static void main (String[] args){
-		//// Replace this comment with your code.
-		//// This function is similar to the main function of Editor1.java			
-	}
+    public static void main(String[] args) {
+        // Check for valid command-line arguments
+        if (args.length != 3) {
+            System.out.println("Usage: java Editor2 <image.ppm> <width> <height>");
+            return;
+        }
+
+        // Parse the command-line arguments
+        String fileName = args[0];
+        int targetWidth = Integer.parseInt(args[1]);
+        int targetHeight = Integer.parseInt(args[2]);
+
+        // Load the source image
+        Color[][] sourceImage = Runigram.read(fileName);
+
+        // Scale the image using the provided scaled function
+        Color[][] scaledImage = Runigram.scaled(sourceImage, targetWidth, targetHeight);
+
+        // Display the source image
+        int originalWidth = sourceImage[0].length;
+        int originalHeight = sourceImage.length;
+        StdDraw.setCanvasSize(originalWidth, originalHeight);
+        StdDraw.setXscale(0, originalWidth);
+        StdDraw.setYscale(0, originalHeight);
+        Runigram.display(sourceImage);
+        StdDraw.pause(3000); // Pause for 3 seconds
+
+        // Display the scaled image
+        StdDraw.setCanvasSize(targetWidth, targetHeight);
+        StdDraw.setXscale(0, targetWidth);
+        StdDraw.setYscale(0, targetHeight);
+        Runigram.display(scaledImage);
+    }
 }
