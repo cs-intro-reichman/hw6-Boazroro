@@ -172,29 +172,41 @@ public class Runigram {
 	}
 
 	public static Color blend(Color c1, Color c2, double alpha) {
-
+		if (alpha < 0 || alpha > 1) {
+			throw new IllegalArgumentException("Alpha must be between 0 and 1.");
+		}
+	
 		int red = (int) Math.round(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
 		int green = (int) Math.round(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
 		int blue = (int) Math.round(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
-
+	
+		red = Math.max(0, Math.min(255, red));
+		green = Math.max(0, Math.min(255, green));
+		blue = Math.max(0, Math.min(255, blue));
+	
 		return new Color(red, green, blue);
 	}
+	
 
 	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
+		if (image1.length != image2.length || image1[0].length != image2[0].length) {
+			image2 = scaled(image2, image1[0].length, image1.length);
+		}
+	
 		int rows = image1.length;
 		int cols = image1[0].length;
-
+	
 		Color[][] blendedImage = new Color[rows][cols];
-
+	
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < cols; j++) {
 				blendedImage[i][j] = blend(image1[i][j], image2[i][j], alpha);
 			}
 		}
-
+	
 		return blendedImage;
 	}
-
+	
 	public static void morph(Color[][] source, Color[][] target, int n) {
 		int rows = source.length;
 		int cols = source[0].length;
