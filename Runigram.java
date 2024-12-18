@@ -167,17 +167,16 @@ public static Color[][] scaled(Color[][] image, int width, int height) {
 }
 
 	
-	/**
-	 * Computes and returns a blended color which is a linear combination of the two given
-	 * colors. Each r, g, b, value v in the returned color is calculated using the formula 
-	 * v = alpha * v1 + (1 - alpha) * v2, where v1 and v2 are the corresponding r, g, b
-	 * values in the two input color.
-	 */
-	public static Color blend(Color c1, Color c2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
-	}
-	
+public static Color blend(Color c1, Color c2, double alpha) {
+   
+
+    int red = (int) Math.round(alpha * c1.getRed() + (1 - alpha) * c2.getRed());
+    int green = (int) Math.round(alpha * c1.getGreen() + (1 - alpha) * c2.getGreen());
+    int blue = (int) Math.round(alpha * c1.getBlue() + (1 - alpha) * c2.getBlue());
+
+    return new Color(red, green, blue);
+}
+
 	/**
 	 * Cosntructs and returns an image which is the blending of the two given images.
 	 * The blended image is the linear combination of (alpha) part of the first image
