@@ -176,17 +176,20 @@ public static Color blend(Color c1, Color c2, double alpha) {
 
     return new Color(red, green, blue);
 }
+public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
+    int rows = image1.length;
+    int cols = image1[0].length;
 
-	/**
-	 * Cosntructs and returns an image which is the blending of the two given images.
-	 * The blended image is the linear combination of (alpha) part of the first image
-	 * and (1 - alpha) part the second image.
-	 * The two images must have the same dimensions.
-	 */
-	public static Color[][] blend(Color[][] image1, Color[][] image2, double alpha) {
-		//// Replace the following statement with your code
-		return null;
-	}
+    Color[][] blendedImage = new Color[rows][cols];
+
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            blendedImage[i][j] = blend(image1[i][j], image2[i][j], alpha);
+        }
+    }
+
+    return blendedImage;
+}
 
 	/**
 	 * Morphs the source image into the target image, gradually, in n steps.
